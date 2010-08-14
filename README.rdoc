@@ -1,6 +1,6 @@
 == Wordpress Ruby API
 
-No doubt, wordpress is the defacto standard when it comes to blog engines. But how to integrate it with your Rails App or any Ruby App? Enter this simple API Wrapper, which makes use of the excellent JSON plugin for wordpress by Dan Phiffer.
+No doubt, wordpress is the defacto standard when it comes to blog engines. But how to integrate it with your Rails App or any Ruby App? Enter this simple API Wrapper, which makes use of the excellent {JSON plugin}[http://wordpress.org/extend/plugins/json-api/] for wordpress by Dan Phiffer.
 
 == Hint
 
@@ -12,7 +12,7 @@ Somewhere in your app (e.g. in an initializer file in rails):
   
   WpRubyApi::Base.site = "http://path/to/your/wordpress-blog"
   
-Start your app or hump into the console. You should be able to use methods like
+Start your app or hop into the console. You should be able to use methods like this:
   
   WpRubyApi::Post.all
   WpRubyApi::Post.find(3)
