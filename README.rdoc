@@ -28,7 +28,8 @@ Currently only available as a rails plugin.
 
 == Requirements
 
-  HTTParty
+* Install the {link JSON-API plugin}[http://wordpress.org/extend/plugins/json-api/] in your wordpress blog
+* {link HTTParty}[http://rubygems.org/gems/httparty] gem must be installed
 
 == TODO
 
