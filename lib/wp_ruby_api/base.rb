@@ -3,7 +3,7 @@ require 'wp_ruby_api/exceptions'
 module WpRubyApi
   
   class Base
-    cattr_accessor :site
+    cattr_accessor :site, :permalinks
     
     class << self
       
@@ -41,7 +41,12 @@ module WpRubyApi
       end
       
       def request(request_params)
-        Crack::JSON.parse(HTTParty.get(site, :query => request_params).to_json)
+        if permalinks == :enabled
+          request_method = request_params.delete(:json)
+          Crack::JSON.parse(HTTParty.get("#{site}/api/#{request_method}", :query => request_params))
+        else
+          Crack::JSON.parse(HTTParty.get(site, :query => request_params).to_json)
+        end
       end
       
       def instantiate_collection(collection)

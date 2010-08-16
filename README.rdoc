@@ -1,40 +1,46 @@
 == Wordpress Ruby API
 
-No doubt, wordpress is the defacto standard when it comes to blog engines. But how to integrate it with your Rails App or any Ruby App? Enter this simple API Wrapper, which makes use of the excellent {JSON plugin}[http://wordpress.org/extend/plugins/json-api/] for wordpress by Dan Phiffer.
-
-== Hint
-
-This code is a pre alpha version! So use it at your own risk (it works fine for me though) or fork the project.
-
-== Usage
-
-Somewhere in your app (e.g. in an initializer file in rails):
-  
-  WpRubyApi::Base.site = "http://path/to/your/wordpress-blog"
-  
-Start your app or hop into the console. You should be able to use methods like this:
-  
-  WpRubyApi::Post.all
-  WpRubyApi::Post.find(3)
-  WpRubyApi::Post.search("my search term")
-  WpRubyApi::Post.by_category("my-category")
-  WpRubyApi::Comment.create({:name => "John Doe", :email => "mail@example.com", :content => "This is a comment!", :post_id => 1})
-
-For more methods and documentation please read the code.
-
-== Installation
-
-Currently only available as a rails plugin.
+How to integrate your Wordpress Blog in your Rails App (or any Ruby App)? Enter this simple API Wrapper, which makes use of the excellent {JSON plugin}[http://wordpress.org/extend/plugins/json-api/] for wordpress by Dan Phiffer.
 
 == Requirements
 
 * Install the {JSON-API plugin}[http://wordpress.org/extend/plugins/json-api/] in your wordpress blog
 * {HTTParty}[http://rubygems.org/gems/httparty] gem must be installed
 
-== TODO
+== Configuration
+
+Somewhere in your app (e.g. in an initializer file in Rails):
+  
+  WpRubyApi::Base.site = "http://path/to/your/wordpress-blog"
+
+If you have permalinks enabled in wordpress:
+  
+  WpRubyApi::Base.permalinks = :enabled
+
+This setting translates the request to either http://blog-path/api/json_method?params or http://blog-path?json=json-method&params. This is part of the JSON API.
+
+== Usage
+
+Start your app or hop into the console. You should be able to use methods like this:
+  
+  WpRubyApi::Post.all
+  WpRubyApi::Post.find(3)
+  WpRubyApi::Post.search("my search term")
+  WpRubyApi::Post.by_category("my-category")
+  WpRubyApi::Page.find('about')
+  WpRubyApi::Comment.create({:name => "John Doe", :email => "mail@example.com", :content => "This is a comment!", :post_id => 1}) (requires activation in JSON API)
+
+For more methods and documentation take a look at the code.
+
+== Installation
+
+Currently only available as a rails plugin.
+
+== TODOs
 
 * docs
 * tests
+* gemify
 
 == Project Info
 
