@@ -43,7 +43,7 @@ module WpRubyApi
       def request(request_params)
         if permalinks == :enabled
           request_method = request_params.delete(:json)
-          Crack::JSON.parse(HTTParty.get("#{site}/api/#{request_method}", :query => request_params))
+          Crack::JSON.parse(HTTParty.get("#{site}/api/#{request_method}", :query => request_params).to_s)
         else
           Crack::JSON.parse(HTTParty.get(site, :query => request_params).to_json)
         end
